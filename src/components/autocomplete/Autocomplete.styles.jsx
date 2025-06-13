@@ -34,7 +34,7 @@ export const Input = styled.input`
 export const Suggestion = styled.li`
     list-style: none;
     padding: 0.5rem 0.75rem;
-    background-color: #f7f7f7;
+    background-color: ${({ isActive }) => (isActive ? "#bde4ff" : "#f7f7f7")};
     border-top: 1px solid #ddd;
     cursor: pointer;
     font-size: 0.75rem;
@@ -64,7 +64,7 @@ export const TagsWrapper = styled.div`
     justify-content: flex-start;
     flex-wrap: wrap;
     font-size: 0.75rem;
-    margin-top: 0.5rem;
+    margin: 0.5rem 0 ;
     padding: 0 ;
     border-radius: 0.5rem;
     box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.05);
@@ -78,6 +78,7 @@ export const Tag = styled.div`
     background-color: #fff;
     padding: 0.25rem;
     margin-left: 0.25rem;
+    margin-bottom: 0.25rem;
     border-radius: 5px;
 `;
 
@@ -90,4 +91,23 @@ export const RemoveButton = styled.button`
     &:hover {
         color: black;
     }
+`;
+
+export const AddButton = styled.button`
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  margin-left: 0.25rem;
+  border-radius: 0.5rem;
+  border: 1px solid #ccc;
+  background-color: #f7f7f7;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #eaeaea;
+  }
+`;
+
+export const InputWrapper = styled.div`
+    display: flex;
+    justify-content: center;
 `;
