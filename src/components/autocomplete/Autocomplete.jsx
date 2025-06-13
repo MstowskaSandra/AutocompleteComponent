@@ -1,5 +1,7 @@
-import React, { useState, useEffect, useRef }from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import * as S from './Autocomplete.styles';
+import TagList from './components/tagList/TagList';
+import SuggestionsList from './components/suggestionsList/SuggestionsList';
 
 const Autocomplete = ({ options }) => {
     const [value, setValue] = useState("");
@@ -74,7 +76,7 @@ const Autocomplete = ({ options }) => {
         block: 'nearest',
         });
     }
-}, [highlightedIndex]);
+  }, [highlightedIndex]);
 
 
   return (
@@ -89,27 +91,14 @@ const Autocomplete = ({ options }) => {
             />
             <S.AddButton onClick={handleAddTag}>Add Tag</S.AddButton>
         </S.InputWrapper>
-        <S.TagsWrapper>
-          {selectedItems.map(item => (
-            <S.Tag key={item}>
-                <span>{item}</span>
-                <S.RemoveButton onClick={() => handleRemove(item)}>x</S.RemoveButton>
-            </S.Tag>
-          ))}
-        </S.TagsWrapper>
+        <TagList  selectedItems={selectedItems} handleRemove={handleRemove}/>
         {showSuggestions && (
-            <S.SuggestionsList>
-                {suggestions.map((suggestion, index) => (
-                    <S.Suggestion 
-                       onClick={() => handleSuggestionClick(suggestion)} 
-                       key={suggestion}
-                       ref={(el) => (suggestionRefs.current[index] = el)}
-                       isActive={highlightedIndex === index}
-                       >
-                        {suggestion}
-                    </S.Suggestion> 
-                ))}
-            </S.SuggestionsList>
+            <SuggestionsList 
+              suggestions={suggestions}
+              handleSuggestionClick={handleSuggestionClick} 
+              highlightedIndex={highlightedIndex}
+              suggestionRefs={suggestionRefs}
+              />
         )}  
     </S.Container>
   );
